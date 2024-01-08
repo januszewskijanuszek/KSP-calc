@@ -1,11 +1,11 @@
-#include "celestal.hpp"
+#include "../celestal.hpp"
 
 class Minimus : public Celestal {
 public:
-    double GRAVITATIONAL_PARAMETER = 1.7658000 * pow(10, 9);
-    double RADIUS = 60000;
-    double MASS = 2.6457580 * pow(10, 19);
-    double SOI = 2247735.4;
+    const double GRAVITATIONAL_PARAMETER = 1.7658000 * pow(10, 9);
+    const double RADIUS = 60000;
+    const double MASS = 2.6457580 * pow(10, 19);
+    const double SOI = 2247735.4;
 
     double getGravitationalParameter() const override {return GRAVITATIONAL_PARAMETER;}
     double getSoi() const override {return SOI;}

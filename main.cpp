@@ -5,10 +5,10 @@
 #include <vector>
 #include "celestal.hpp"
 
-#include "moon.hpp"
-#include "minimus.hpp"
-#include "kerbin.hpp"
-#include "duna.hpp"
+#include "planets/moon.hpp"
+#include "planets/minimus.hpp"
+#include "planets/kerbin.hpp"
+#include "planets/duna.hpp"
 
 using namespace std;
 

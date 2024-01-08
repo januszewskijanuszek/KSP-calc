@@ -20,7 +20,7 @@ double Celestal::getPeriapsis(const uint16_t &time, double apoapsis) const {
     // r1 + r2 / 2 = a
     const double a = getAltitudeByTime(time) + getRadius();
     const double r2 = a * 2 - (apoapsis + getRadius());
-    return validateData(r2) ? r2 : 0.0;
+    return validateData(r2) ? r2 - getRadius(): 0.0;
 }
 
 double Celestal::getTimeByAltitude(const double &altitude) const{
