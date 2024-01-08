@@ -33,7 +33,13 @@ int main(){
     cin >> planet_chose;
     system("cls");
     uint16_t mode_chose;
-    cout << "Chosen planet: " + planets.at(planet_chose - 1) -> getName() + "\n";
+    try {
+        cout << "Chosen planet: " + planets.at(planet_chose - 1) -> getName() + "\n";
+    } catch(const out_of_range &e){
+        cout << "Invalid number\n";
+        exit(1);
+    }
+    
     printMenu(1, "Get apoapsis by providing a time");
     printMenu(2, "Get time by providing a apoapsis");
     printMenu(3, "Get periapsis by providing fixed time and apoapsis");
