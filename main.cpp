@@ -33,8 +33,9 @@ int main(){
     cin >> planet_chose;
     system("cls");
     uint16_t mode_chose;
+    Celestal* chosen_planet = planets.at(planet_chose - 1);
     try {
-        cout << "Chosen planet: " + planets.at(planet_chose - 1) -> getName() + "\n";
+        cout << "Chosen planet: " + chosen_planet -> getName() + "\n";
     } catch(const out_of_range &e){
         cout << "Invalid number\n";
         exit(1);
@@ -50,14 +51,14 @@ int main(){
             uint16_t time;
             cout << "Provide time(s): ";
             cin >> time;
-            cout << fixed << planets.at(planet_chose - 1)->getAltitudeByTime(time) << "m" << setprecision(6) << endl;
+            cout << fixed << chosen_planet->getAltitudeByTime(time) << "m" << setprecision(6) << endl;
             break;
         }
         case 2:{
             double apoapsis;
             cout << "Provide apoapsis(m): ";
             cin >> apoapsis;
-            cout << fixed << planets.at(planet_chose - 1)->getTimeByAltitude(apoapsis) << "s" << setprecision(6) << endl;
+            cout << fixed << chosen_planet->getTimeByAltitude(apoapsis) << "s" << setprecision(6) << endl;
             break;
         }
         case 3:{
@@ -67,7 +68,7 @@ int main(){
             cin >> apoapsis;
             cout << "Provide time(s): ";
             cin >> time;
-            cout << fixed << planets.at(planet_chose - 1)->getPeriapsis(time, apoapsis) << "m" << setprecision(6) << endl;
+            cout << fixed << chosen_planet->getPeriapsis(time, apoapsis) << "m" << setprecision(6) << endl;
             break;
         }
         default: exit(1);
