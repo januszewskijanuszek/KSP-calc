@@ -9,6 +9,9 @@
 #include "planets/minimus.hpp"
 #include "planets/kerbin.hpp"
 #include "planets/duna.hpp"
+#include "planets/moho.hpp"
+
+// #define MAIN 1
 
 using namespace std;
 
@@ -17,11 +20,16 @@ void printMenu(const uint16_t &id, const string &content){
 }
 
 int main(){
+    Celestal* kerbin = new Kerbin();
+    cout << kerbin->getSoi() << endl;
+
+    #ifdef MAIN
     vector<Celestal*> planets = {
         new Kerbin(), 
         new Moon(), 
         new Minimus(),
-        new Duna()
+        new Duna(),
+        new Moho()
     };
     system("cls");
     cout << "Chose planet:\n";
@@ -72,5 +80,6 @@ int main(){
         }
         default: exit(1);
     }
+    #endif // MAIN
     return 0;
 }
