@@ -1,6 +1,7 @@
-#include "../celestal.hpp"
+#pragma once
+#include "../celestial.hpp"
 
-class Minimus : public Celestal {
+class Minimus : public Celestial {
 public:
     Minimus(){
         GRAVITATIONAL_PARAMETER = 1.7658000 * pow(10, 9);

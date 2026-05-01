@@ -1,6 +1,7 @@
-#include "../celestal.hpp"
+#pragma once
+#include "../celestial.hpp"
 
-class Moho : public Celestal{
+class Moho : public Celestial{
 public:
     Moho(){
         GRAVITATIONAL_PARAMETER = 1.6860938 * pow(10, 11);

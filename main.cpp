@@ -3,15 +3,16 @@
 #include <Windows.h>
 #include <iomanip>
 #include <vector>
-#include "celestal.hpp"
+#include "celestial.hpp"
 
-#include "planets/moon.hpp"
-#include "planets/minimus.hpp"
 #include "planets/kerbin.hpp"
 #include "planets/duna.hpp"
 #include "planets/moho.hpp"
+#include "planets/eve.hpp"
+#include "planets/eeloo.hpp"
+#include "planets/dres.hpp"
 
-// #define MAIN 1
+#define MAIN 1
 
 using namespace std;
 
@@ -20,24 +21,33 @@ void printMenu(const uint16_t &id, const string &content){
 }
 
 int main(){
-    Celestal* kerbin = new Kerbin();
-    cout << kerbin->getSoi() << endl;
-
     #ifdef MAIN
-    vector<Celestal*> planets = {
+    vector<Celestial*> planets = {
+        new Moho(),
+        new Eve(),
+        new Gilly(),
         new Kerbin(), 
         new Moon(), 
         new Minimus(),
         new Duna(),
-        new Moho()
+        new Ike(),
+        new Dres(),
+        new Eeloo()
     };
+
     system("cls");
     cout << "Chose planet:\n";
-    uint16_t i = 1;
     uint16_t planet_chose;
-    for(Celestal * element : planets){
+    for(int i = 1 ; i <= planets.size() ;){
+        Celestial* element = planets[i - 1];
         printMenu(i++, element -> getName());
+        if(element->getMoons().size() != 0){
+            for(Celestial* moon : element->getMoons()){
+                cout << "  " << i++ << " " << moon -> getName() << endl;
+            }
+        }
     }
+
     cin >> planet_chose;
     system("cls");
     uint16_t mode_chose;
@@ -48,8 +58,8 @@ int main(){
         exit(1);
     }
     
-    printMenu(1, "Get apoapsis by providing a time");
-    printMenu(2, "Get time by providing a apoapsis");
+    printMenu(1, "Get apoapsis by providing a time (perfect circular orbit)");
+    printMenu(2, "Get time by providing a apoapsis (perfect circular orbit)");
     printMenu(3, "Get periapsis by providing fixed time and apoapsis");
     cin >> mode_chose;
 

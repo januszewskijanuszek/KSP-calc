@@ -1,6 +1,7 @@
-#include "../celestal.hpp"
+#pragma once
+#include "../celestial.hpp"
 
-class Moon : public Celestal{
+class Moon : public Celestial{
 public:
     Moon(){
         GRAVITATIONAL_PARAMETER = 6.5138398 * pow(10, 10);
