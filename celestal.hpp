@@ -7,11 +7,20 @@
 #define CELESTAL_HPP
 
 class Celestal{
+protected:
+    double GRAVITATIONAL_PARAMETER = 0;
+    double RADIUS = 0;
+    double MASS = 0;
+    double SOI = 0;
 public:
-    virtual double getGravitationalParameter() const {return 0.0;}
-    virtual double getMass() const {return 0.0;}
-    virtual double getRadius() const {return 0.0;}
-    virtual double getSoi() const {return 0.0;}
+    double getGravitationalParameter() const {return GRAVITATIONAL_PARAMETER;}
+    double getSoi() const {return SOI;}
+    double getMass() const {return MASS;}
+    double getRadius() const {return RADIUS;}
+    // virtual double getGravitationalParameter() const {return 0.0;}
+    // virtual double getMass() const {return 0.0;}
+    // virtual double getRadius() const {return 0.0;}
+    // virtual double getSoi() const {return 0.0;}
     virtual std::string getName() const {return "Default";}
 
     // Check if data are correct
