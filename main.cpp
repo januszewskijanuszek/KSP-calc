@@ -20,6 +20,15 @@ void printMenu(const uint16_t &id, const string &content){
     cout << id << " - " << content << "\n";
 }
 
+template<typename T>
+T getValueFromConsole(string comment){
+    T return_value;
+    cout << comment;
+    cin >> return_value;
+    return return_value;
+}
+
+
 int main(){
     #ifdef MAIN
     vector<Celestial*> planets = {
@@ -37,7 +46,7 @@ int main(){
 
     system("cls");
     cout << "Chose planet:\n";
-    uint16_t planet_chose;
+    uint16_t picked_number;
     for(int i = 1 ; i <= planets.size() ;){
         Celestial* element = planets[i - 1];
         printMenu(i++, element -> getName());
@@ -48,11 +57,12 @@ int main(){
         }
     }
 
-    cin >> planet_chose;
+    cin >> picked_number;
+    Celestial* chosen_planet = planets.at(picked_number - 1);
     system("cls");
     uint16_t mode_chose;
     try {
-        cout << "Chosen planet: " + planets.at(planet_chose - 1) -> getName() + "\n";
+        cout << "Chosen planet: " + chosen_planet -> getName() + "\n";
     } catch(const out_of_range &e){
         cout << "Invalid number\n";
         exit(1);
@@ -66,37 +76,25 @@ int main(){
 
     switch(mode_chose){
         case 1: {
-            uint16_t time;
-            cout << "Provide time(s): ";
-            cin >> time;
-            cout << fixed << planets.at(planet_chose - 1)->getAltitudeByTime(time) << "m" << setprecision(6) << endl;
+            uint16_t time = getValueFromConsole<uint16_t>("Provide time(s): ");
+            cout << fixed << chosen_planet->getAltitudeByTime(time) << "m" << setprecision(6) << endl;
             break;
         }
         case 2:{
-            double apoapsis;
-            cout << "Provide apoapsis(m): ";
-            cin >> apoapsis;
-            cout << fixed << planets.at(planet_chose - 1)->getTimeByAltitude(apoapsis) << "s" << setprecision(6) << endl;
+            double apoapsis = getValueFromConsole<double>("Provide apoapsis(m): ");
+            cout << fixed << chosen_planet->getTimeByAltitude(apoapsis) << "s" << setprecision(6) << endl;
             break;
         }
         case 3:{
-            double apoapsis;
-            uint16_t time;
-            cout << "Provide apoapsis(m): ";
-            cin >> apoapsis;
-            cout << "Provide time(s): ";
-            cin >> time;
-            cout << fixed << planets.at(planet_chose - 1)->getPeriapsis(time, apoapsis) << "m" << setprecision(6) << endl;
+            double apoapsis = getValueFromConsole<double>("Provide apoapsis(m): ");
+            uint16_t time = getValueFromConsole<uint16_t>("Provide time(s): ");
+            cout << fixed << chosen_planet->getPeriapsis(time, apoapsis) << "m" << setprecision(6) << endl;
             break;
         }
         case 4:{
-            double apoapsis;
-            int amount_of_satellites;
-            cout << "Provide apoapsis(m): ";
-            cin >> apoapsis;
-            cout << "Provide number of satellites (min 3): ";
-            cin >> amount_of_satellites;
-            cout << fixed << planets.at(planet_chose - 1)->getPeriapsisForSynchronousSattelites(apoapsis, amount_of_satellites) << "m" << setprecision(6) << endl;
+            double apoapsis = getValueFromConsole<double>("Provide apoapsis(m): ");
+            int amount_of_satellites = getValueFromConsole<int>("Provide number of satellites (min 3): ");
+            cout << fixed << chosen_planet->getPeriapsisForSynchronousSattelites(apoapsis, amount_of_satellites) << "m" << setprecision(6) << endl;
             break;
         }
         default: exit(1);
